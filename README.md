@@ -13,7 +13,7 @@ These instructions will get you a copy of the project up and running on your loc
 
 ### Running the app 
 
-To run the app without building the project , open a emulator in xcode and drag and drop the .app file to the emulator
+To run the app without building the project , download the quiz.app.zip file and extract the file . Now open a emulator in xcode and drag and drop the .app file to the emulator
 
 ## Built With
 
