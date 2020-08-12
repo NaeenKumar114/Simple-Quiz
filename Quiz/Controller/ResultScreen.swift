@@ -31,7 +31,6 @@ class ResultScreen: UIViewController {
             resultLable.text = "Fail"
             resultLable.textColor = UIColor.red
         }
-        // Do any additional setup after loading the view.
     }
     
 

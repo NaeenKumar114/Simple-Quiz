@@ -14,7 +14,6 @@ class ViewController: UIViewController, quizEndProtocol {
     @IBOutlet weak var questionLabel: UILabel!
     @IBOutlet weak var progressBar: UIProgressView!
     
-    //Added another button and a corroponding outlet.
     @IBOutlet weak var choice1: UIButton!
     @IBOutlet weak var choice2: UIButton!
     @IBOutlet weak var choice3: UIButton!
@@ -30,14 +29,12 @@ class ViewController: UIViewController, quizEndProtocol {
         quizBrain.delegate = self
         quizBrain.getQuestions()
         updateUI()
-        //timerTakenTimer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(updateTimer), userInfo: nil, repeats: true)
     }
     @objc func updateTimer ()
     {
         scoreLabel.text = String(quizBrain.updateTimer())
     }
     func didEnd(score: Int, timeTaken: Double) {
-       // timerTakenTimer.invalidate()
         finalScore = score
         totalTimeTaken = timeTaken
         print(score , timeTaken)
@@ -51,7 +48,6 @@ class ViewController: UIViewController, quizEndProtocol {
             }
         }
     }
-    //New button needs to be linked to this IBAction too.
     @IBAction func answerButtonPressed(_ sender: UIButton) {
         
         let userAnswer = sender.currentTitle!

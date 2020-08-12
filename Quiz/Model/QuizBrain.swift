@@ -15,8 +15,7 @@ struct QuizBrain {
     var questionNumber = 0
     var score = 0
     var timeTaken = 0
-    var startingTime : String!
-    var t : Double!
+    var startTime : Double!
     var quizQuestionAndAnswers : [quizQuestions]!
    
     mutating func getQuestions()
@@ -42,7 +41,6 @@ struct QuizBrain {
         if let jsonQuestions = try? decoder.decode(QuizData.self, from: json) {
             for i in 0 ... 9{
                 quizQuestionAndAnswers = jsonQuestions.results
-                // print(jsonQuestions.results[i].question.htmlAttributedString!.string)
                 print(quizQuestionAndAnswers[i].correct_answer)
                 print(quizQuestionAndAnswers[i].question.htmlAttributedString!.string)
                 print("")
@@ -55,15 +53,13 @@ struct QuizBrain {
         if questionNumber == 0
         {
             
-            t = Date.timeIntervalSinceReferenceDate
+            startTime = Date.timeIntervalSinceReferenceDate
         }
       
-        // return quiz[questionNumber].text
         return quizQuestionAndAnswers[questionNumber].question.htmlAttributedString!.string
     }
     
     func getAnswers() -> [String] {
-        // return quiz[questionNumber].answers
         var answers = quizQuestionAndAnswers[questionNumber].incorrect_answers
         answers.append(quizQuestionAndAnswers[questionNumber].correct_answer)
         answers.shuffle()
@@ -84,17 +80,15 @@ struct QuizBrain {
         if questionNumber + 1 < quizQuestionAndAnswers.count {
             questionNumber += 1
         } else {
-            delegate.didEnd(score: score, timeTaken: Date.timeIntervalSinceReferenceDate - t)
+            delegate.didEnd(score: score, timeTaken: Date.timeIntervalSinceReferenceDate - startTime)
             score = 0
             questionNumber = 0
         }
     }
     func getCorrectAnswer() -> String{
-        //return quiz[questionNumber].rightAnswer
         return quizQuestionAndAnswers[questionNumber].correct_answer.htmlAttributedString!.string
     }
     mutating func checkAnswer(userAnswer: String) -> Bool {
-        //Need to change answer to rightAnswer here.
         if userAnswer == quizQuestionAndAnswers[questionNumber].correct_answer.htmlAttributedString!.string {
             score += 1
             return true
