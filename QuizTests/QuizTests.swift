@@ -10,10 +10,16 @@ import XCTest
 @testable import Quiz
 
 class QuizTests: XCTestCase {
-    func testHello()
+    var quizBrain = QuizBrain()
+    
+    func testGetQuestions()
     {
-        var quizBrainTest = QuizBrain()
-      let answer = quizBrainTest.checkAnswer(userAnswer: "Skin")
-        XCTAssertTrue(answer)
+        quizBrain.getQuestions()
+        XCTAssertNotNil(quizBrain.quizQuestionAndAnswers)
+    }
+    func testGetScore()
+    {
+        quizBrain.getQuestions()
+        XCTAssertNotNil(quizBrain.getScore)
     }
 }
